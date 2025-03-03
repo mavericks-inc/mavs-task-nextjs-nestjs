@@ -1,0 +1,6 @@
+node_modules
+dist
+README.md
+tests
+buildspec.yml
+.dockerignore

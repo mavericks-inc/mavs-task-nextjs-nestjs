@@ -1,0 +1,14 @@
+FROM public.ecr.aws/docker/library/node:18-alpine as setup
+WORKDIR /usr/src/frontend
+COPY --chown=node:node package.json package-lock.json ./
+RUN npm install --no-progress
+
+FROM public.ecr.aws/docker/library/node:18-alpine as build
+WORKDIR /usr/src/frontend
+COPY --from=setup --chown=node:node /usr/src/frontend/node_modules node_modules
+ENV HOST 0.0.0.0
+EXPOSE 3000
+USER node
+
+# 起動
+CMD ["npm", "run", "dev"]

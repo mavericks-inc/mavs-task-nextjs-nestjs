@@ -1,0 +1,11 @@
+{
+  "prettier/prettier": "error",
+  "arrow-body-style": "off",
+  "prefer-arrow-callback": "off",
+  "printWidth": 100,
+  "trailingComma": "es5",
+  "tabWidth": 2,
+  "semi": true,
+  "singleQuote": true,
+  "endOfLine": "lf"
+}

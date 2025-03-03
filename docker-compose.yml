@@ -1,0 +1,65 @@
+version: '3'
+
+services:
+  mavs-task:
+    container_name: mavs-task
+    build:
+      context: frontend
+      dockerfile: Dockerfile.dev
+    ports:
+      - 3000:3000
+      - 24678:24678
+    volumes:
+      - ./frontend:/usr/src/frontend
+      - mavs-task-front-molules:/usr/src/frontend/node_modules
+    tty: true
+    environment:
+      - HOST=0.0.0.0
+      - CHOKIDAR_USEPOLLING=true
+    env_file:
+      - ./frontend/.env
+    depends_on:
+      - mavs-task-api
+  mavs-task-api:
+    container_name: mavs-task-api
+    build:
+      context: backend
+      dockerfile: Dockerfile.dev
+    ports:
+      - 3001:3001
+    volumes:
+      - ./backend:/usr/src/backend
+      - mavs-task-api-molules:/usr/src/backend/node_modules
+    command: npm run dev
+  postgres:
+    image: postgres:12
+    container_name: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      PGPASSWORD: root123
+      POSTGRES_DB: mavs-task-db
+      TZ: 'Asia/Tokyo'
+    ports:
+      - 5432:5432
+    volumes:
+      - ./postgres/initdb:/docker-entrypoint-initdb.d
+
+  pgadmin4:
+    image: dpage/pgadmin4:5.3
+    container_name: pgadmin4
+    ports:
+      - 80:80
+    volumes:
+      - ./pgadmin:/var/lib/pgadmin/storage
+    environment:
+      PGADMIN_DEFAULT_EMAIL: root@test.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    restart: always
+    depends_on:
+      - postgres
+
+volumes:
+  mavs-task-front-molules:
+  mavs-task-api-molules:

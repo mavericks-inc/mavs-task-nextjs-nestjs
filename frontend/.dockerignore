@@ -1,0 +1,8 @@
+node_modules
+.next
+README.md
+Dockerfile
+Dockerfile.dev
+buildspec.yml
+
+.dockerignore
