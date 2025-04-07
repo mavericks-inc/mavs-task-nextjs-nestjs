@@ -30,7 +30,7 @@ services:
     volumes:
       - ./backend:/usr/src/backend
       - mavs-task-api-molules:/usr/src/backend/node_modules
-    command: npm run dev
+    command: yarn start:dev
   postgres:
     image: postgres:12
     container_name: postgres
