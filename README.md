@@ -45,9 +45,7 @@ docker compose up --build
 ```
 
 ターミナルにこのように表示されていれば問題なく動作しています。
-TODO: 撮り直し
-<img width="1231" alt="スクリーンショット 2024-11-22 9 02 44" src="https://github.com/user-attachments/assets/951a337c-1cb7-4337-ab4f-856c43898f57">
-
+![Alt text](image.png)
 
 ※postgresql には初期構築時にテストデータが投入されます。
 
